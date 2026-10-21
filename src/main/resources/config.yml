@@ -1,0 +1,54 @@
+# ============================================================
+#  FloatArsenal - configuracion
+#  Tras editar usa /floatarsenal reload
+#  (los items ya entregados conservan el lore con que fueron creados;
+#   los valores de habilidades SI se leen en vivo desde aqui)
+# ============================================================
+
+# Activa o desactiva las recetas de crafteo (el comando de admin siempre funciona).
+recipes-enabled: true
+
+# Muestra las recetas en el libro de recetas de todos los jugadores al entrar.
+discover-recipes: true
+
+# Probabilidad (0.0 - 1.0) de que un golpe/uso NO gaste durabilidad.
+# 0.5 = durabilidad efectiva x2 (4062 usos, vs 2031 de Netherite).
+durability-save-chance: 0.5
+
+# Carga minima del golpe (0.0 - 1.0) para que se activen las pasivas.
+# Evita abusar de las pasivas haciendo spam de clicks.
+min-attack-charge: 0.85
+
+weapons:
+  ignarion:               # Espada de fuego
+    cooldown: 12          # segundos (habilidad activa: Nova Ignea)
+    radius: 5.0
+    damage: 8.0           # 4 corazones
+    fire-seconds: 6
+    passive-fire-seconds: 5
+    burning-bonus: 0.25   # +25% dano a enemigos que ya arden
+
+  pyrokar:                # Hacha de fuego
+    cooldown: 15          # segundos (habilidad activa: Impacto Magmatico)
+    range: 10.0
+    damage: 10.0          # 5 corazones
+    fire-seconds: 5
+    kill-heal: 6.0        # 3 corazones al matar (pasiva)
+    kill-strength-seconds: 8
+
+  glacius:                # Espada de hielo
+    cooldown: 14          # segundos (habilidad activa: Zarpazo Ventisca)
+    dash-power: 1.6
+    damage: 6.0           # dano a quien atraviesas
+    radius: 4.0
+    slow-seconds: 4
+    passive-slow-seconds: 3
+
+  cryonax:                # Hacha de hielo
+    cooldown: 18          # segundos (habilidad activa: Tormenta Polar)
+    radius: 6.0
+    duration-seconds: 5
+    pulse-damage: 3.0     # un pulso por segundo
+    slow-seconds: 3
+    root-chance: 0.20     # pasiva: probabilidad de inmovilizar
+    root-seconds: 2

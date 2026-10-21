@@ -1,0 +1,19 @@
+name: FloatArsenal
+version: 1.0.0
+main: net.floatmc.arsenal.FloatArsenal
+api-version: '1.20'
+authors: [FloatMC]
+description: Armas legendarias de fuego y hielo para FloatMC
+commands:
+  floatarsenal:
+    description: Administra las armas legendarias de FloatArsenal
+    usage: /<command> <give|list|reload>
+    aliases: [farsenal, arsenal]
+    permission: floatarsenal.admin
+permissions:
+  floatarsenal.admin:
+    description: Dar armas, listar y recargar la configuracion
+    default: op
+  floatarsenal.use:
+    description: Permite usar las habilidades activas de las armas
+    default: true
