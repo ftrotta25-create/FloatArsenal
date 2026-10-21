@@ -6,7 +6,7 @@
 
     <groupId>net.floatmc</groupId>
     <artifactId>FloatArsenal</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
     <name>FloatArsenal</name>
     <description>Armas legendarias de fuego y hielo para FloatMC</description>

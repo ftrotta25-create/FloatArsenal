@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/** /floatarsenal give <jugador> <arma|all> [cantidad] | list | reload */
+/** /floatarsenal give <jugador> <arma|all> [cantidad] | list | reload | discover */
 public final class ArsenalCommand implements CommandExecutor, TabCompleter {
 
     private static final String PREFIX = "&6[FloatArsenal] &7";
@@ -37,6 +37,7 @@ public final class ArsenalCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage(Txt.msg(PREFIX + "Configuración y recetas recargadas."));
             }
             case "give" -> give(sender, label, args);
+            case "discover" -> discover(sender, args);
             default -> help(sender, label);
         }
         return true;
@@ -47,6 +48,21 @@ public final class ArsenalCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(Txt.msg("&e/" + label + " give <jugador> <arma|all> [cantidad] &8- &7Entrega armas"));
         sender.sendMessage(Txt.msg("&e/" + label + " list &8- &7Lista las armas"));
         sender.sendMessage(Txt.msg("&e/" + label + " reload &8- &7Recarga config y recetas"));
+        sender.sendMessage(Txt.msg("&e/" + label + " discover <jugador> &8- &7Actualiza recetas aprendidas"));
+    }
+
+    private void discover(CommandSender sender, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage(Txt.msg(PREFIX + "&cUso: /floatarsenal discover <jugador>"));
+            return;
+        }
+        Player target = Bukkit.getPlayerExact(args[1]);
+        if (target == null) {
+            sender.sendMessage(Txt.msg(PREFIX + "&cEl jugador '" + args[1] + "' no está conectado."));
+            return;
+        }
+        plugin.discoverRecipesFor(target);
+        sender.sendMessage(Txt.msg(PREFIX + "Recetas actualizadas para &e" + target.getName() + "&7."));
     }
 
     private void list(CommandSender sender) {
@@ -114,8 +130,9 @@ public final class ArsenalCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> out = new ArrayList<>();
         if (args.length == 1) {
-            addMatches(out, args[0], List.of("give", "list", "reload"));
-        } else if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
+            addMatches(out, args[0], List.of("give", "list", "reload", "discover"));
+        } else if (args.length == 2
+                && (args[0].equalsIgnoreCase("give") || args[0].equalsIgnoreCase("discover"))) {
             List<String> names = new ArrayList<>();
             for (Player p : Bukkit.getOnlinePlayers()) {
                 names.add(p.getName());

@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -125,6 +126,15 @@ public final class WeaponListener implements Listener {
             if (WeaponType.fromItem(plugin, stack) != null) {
                 e.getInventory().setResult(null);
                 return;
+            }
+        }
+
+        if (e.getRecipe() instanceof ShapedRecipe recipe
+                && "floatarsenal".equals(recipe.getKey().getNamespace())) {
+            WeaponType type = WeaponType.byId(recipe.getKey().getKey());
+            if (type != null && (!(e.getView().getPlayer() instanceof Player player)
+                    || !player.hasPermission(type.recipePermission()))) {
+                e.getInventory().setResult(null);
             }
         }
     }

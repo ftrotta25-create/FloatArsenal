@@ -131,6 +131,10 @@ public enum WeaponType {
         return id;
     }
 
+    public String recipePermission() {
+        return "floatarsenal.recipe." + id;
+    }
+
     public Kind kind() {
         return kind;
     }

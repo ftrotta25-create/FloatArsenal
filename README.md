@@ -28,14 +28,15 @@ Las armas legendarias **no pueden usarse en la mesa de crafteo** (evita converti
 ## Comandos y permisos
 
 - `/floatarsenal give <jugador> <ignarion|pyrokar|glacius|cryonax|all> [1-10]` — alias `/farsenal`, `/arsenal`
-- `/floatarsenal list` · `/floatarsenal reload`
+- `/floatarsenal list` · `/floatarsenal reload` · `/floatarsenal discover <jugador>`
 - `floatarsenal.admin` (op por defecto): comandos. `floatarsenal.use` (todos por defecto): usar habilidades activas.
+- `floatarsenal.recipe.<arma>` (denegado por defecto): permiso individual requerido para descubrir y fabricar la receta; debe otorgarse al jugador cuando aprende el libro correspondiente.
 
 ## Compilar e instalar
 
 ```bash
 mvn clean package          # requiere JDK 17 + Maven y acceso a repo.papermc.io
-# jar resultante: target/FloatArsenal-1.0.0.jar  -> copiar a /plugins
+# jar resultante: target/FloatArsenal-1.1.0.jar  -> copiar a /plugins
 ```
 Sin Maven local: sube la carpeta a GitHub; `.github/workflows/build.yml` compila el jar automáticamente (pestaña Actions → Artifacts).
 

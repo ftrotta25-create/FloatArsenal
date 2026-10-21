@@ -1,5 +1,5 @@
 name: FloatArsenal
-version: 1.0.0
+version: 1.1.0
 main: net.floatmc.arsenal.FloatArsenal
 api-version: '1.20'
 authors: [FloatMC]
@@ -7,7 +7,7 @@ description: Armas legendarias de fuego y hielo para FloatMC
 commands:
   floatarsenal:
     description: Administra las armas legendarias de FloatArsenal
-    usage: /<command> <give|list|reload>
+    usage: /<command> <give|list|reload|discover>
     aliases: [farsenal, arsenal]
     permission: floatarsenal.admin
 permissions:
@@ -17,3 +17,15 @@ permissions:
   floatarsenal.use:
     description: Permite usar las habilidades activas de las armas
     default: true
+  floatarsenal.recipe.ignarion:
+    description: Permite fabricar Ignarion tras aprender su libro
+    default: false
+  floatarsenal.recipe.pyrokar:
+    description: Permite fabricar Pyrokar tras aprender su libro
+    default: false
+  floatarsenal.recipe.glacius:
+    description: Permite fabricar Glacius tras aprender su libro
+    default: false
+  floatarsenal.recipe.cryonax:
+    description: Permite fabricar Cryonax tras aprender su libro
+    default: false

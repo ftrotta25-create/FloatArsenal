@@ -61,8 +61,27 @@ public final class FloatArsenal extends JavaPlugin {
     }
 
     public void discoverRecipesFor(Player p) {
-        if (!recipeKeys.isEmpty() && getConfig().getBoolean("discover-recipes", true)) {
-            p.discoverRecipes(recipeKeys);
+        if (recipeKeys.isEmpty() || !getConfig().getBoolean("discover-recipes", true)) {
+            return;
+        }
+        List<NamespacedKey> unlocked = new ArrayList<>();
+        List<NamespacedKey> locked = new ArrayList<>();
+        for (NamespacedKey key : recipeKeys) {
+            WeaponType type = WeaponType.byId(key.getKey());
+            if (type == null) {
+                continue;
+            }
+            if (p.hasPermission(type.recipePermission())) {
+                unlocked.add(key);
+            } else {
+                locked.add(key);
+            }
+        }
+        if (!unlocked.isEmpty()) {
+            p.discoverRecipes(unlocked);
+        }
+        if (!locked.isEmpty()) {
+            p.undiscoverRecipes(locked);
         }
     }
 
